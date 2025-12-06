@@ -1,7 +1,7 @@
 import os
 import re
 
-phone_number_pattern = r'(\d{3})[.\s-]?(\d{3})[.\s-]?(\d{4})'
+phone_number_pattern = r'[(]?(\d{3})[)]?[.\s-]?(\d{3})[.\s-]?(\d{4})'
 
 def find_phone_numbers(text):
     import re
