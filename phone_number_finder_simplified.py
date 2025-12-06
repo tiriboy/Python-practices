@@ -1,14 +1,15 @@
 import os
 import re
 
-phone_number_pattern = r'\d{3}[.\s-]?\d{3}[.\s-]?\d{4}'
+phone_number_pattern = r'(\d{3})[.\s-]?(\d{3})[.\s-]?(\d{4})'
 
 def find_phone_numbers(text):
     import re
     phone_numbers = re.findall(phone_number_pattern, text)
     if phone_numbers:
         for i in range(len(phone_numbers)):
-            print(f"{i+1}: {phone_numbers[i]}")
+            first, second, third = phone_numbers[i]
+            print(f"{i+1}: {first}-{second}-{third}")
     else:
         print("No phone numbers found.")
 
