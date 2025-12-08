@@ -9,7 +9,7 @@ def sum_10(string):
        return 'Correct'
      raise Exception('Sum is not 10')
    except Exception as e:
-       raise Exception(str(e))
+       raise Exception(str(e) if str(e) == 'Sum is not 10' else 'Invalid input')
    
 try:
   result = pyinputplus.inputCustom(sum_10,prompt='Enter a number whose digits add up to 10 (5 attempts): ', limit=5)
