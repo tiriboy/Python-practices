@@ -30,7 +30,7 @@ def make_quiz_files():
         quiz_folder_path = pyinputplus.inputFilepath(prompt='Enter the folder path where the quizes will be stored: ',limit = 5)
         quiz_folder_path = Path(quiz_folder_path)
     except pyinputplus.RetryLimitException:
-        return'Out of attempts'
+        return None
     if not quiz_folder_path.is_dir():
        quiz_folder_path.mkdir(parents=True,exist_ok=True)
     for quiz in range(num_quizes):
@@ -55,10 +55,11 @@ def write_questions_on_files(path_list):
                 file.write(f"{question_number}. What is the capital of {state}?\n\n")
                 file.write(f"A. {choices[0]}\nB. {choices[1]}\nC. {choices[2]}\nD. {choices[3]}\n\n")
                 question_number += 1
-           
+    print("Done.")       
 def main():
     file_path_list = make_quiz_files()
-    write_questions_on_files(file_path_list)
+    if file_path_list is not None:
+       write_questions_on_files(file_path_list)
 
 
 
