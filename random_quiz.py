@@ -42,13 +42,20 @@ def make_quiz_files():
 def write_questions_on_files(path_list):
     for path in path_list:
         with open(path,'w') as file:
-            file.write('\t\t\t Quiz\n\n')
-            for i in range(50):
-                state = list(states_capitals.keys())[random.randint(0,49)]
-                file.write(f"{i+1}. What is the capital of {state}? \n")
-                file.write(f"A. {states_capitals[state]}\t\t B. {states_capitals[list(states_capitals.keys())[random.randint(0,49)]]}\n")
-                file.write(f"C. {states_capitals[list(states_capitals.keys())[random.randint(0,49)]]}\t\t D. {states_capitals[list(states_capitals.keys())[random.randint(0,49)]]}\n")
-
+            file.write('\t\t\tQuiz\n\n')
+            states = list(states_capitals.keys())
+            capitals = list(states_capitals.values())
+            random.shuffle(states)
+            question_number = 1
+            for state in states:
+                correct_capital = states_capitals[state]
+                wrong_capitals = random.sample([w_capital for w_capital in capitals if w_capital != correct_capital],3)
+                choices = wrong_capitals + [correct_capital]
+                random.shuffle(choices)
+                file.write(f"{question_number}. What is the capital of {state}?\n\n")
+                file.write(f"A. {choices[0]}\nB. {choices[1]}\nC. {choices[2]}\nD. {choices[3]}\n\n")
+                question_number += 1
+           
 def main():
     file_path_list = make_quiz_files()
     write_questions_on_files(file_path_list)
